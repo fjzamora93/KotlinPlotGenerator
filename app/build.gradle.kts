@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.kotlinplotgenerator"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.kotlinplotgenerator"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
