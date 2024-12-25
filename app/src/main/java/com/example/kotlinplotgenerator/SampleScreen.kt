@@ -48,7 +48,6 @@ fun LoginScreen (name: String, modifier: Modifier = Modifier) {
         Body(Modifier.align(Alignment.Center))
         Footer(Modifier.align(Alignment.BottomCenter))
     }
-
 }
 
 @Composable

@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             KotlinPlotGeneratorTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     LoginScreen(
-                        name = "Javiii",
+                        name = "El nombre",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
