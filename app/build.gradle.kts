@@ -50,11 +50,20 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+
+    //Extensión de las librerías de iconos
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // Manejo del viewModel de forma eficiente
+    implementation(platform("androidx.compose:compose-bom:2023.1.0"))
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
+
+
+
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
