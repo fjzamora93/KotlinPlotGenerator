@@ -1,10 +1,8 @@
-package com.example.kotlinplotgenerator
+package com.example.kotlinplotgenerator.viewmodels
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import androidx.compose.runtime.State
-
-
+import com.example.kotlinplotgenerator.models.Character
 
 /***
  * En Kotlin, este mapeo está utilizando un mutableStateOf para crear un
@@ -36,14 +34,7 @@ import androidx.compose.runtime.State
  * mutable de modificaciones directas desde fuera de la clase.
  */
 
-data class Character(
-    val id: String,
-    val name: String,
-    val stats: Map<String, Int>,
-    val spells: List<String> = listOf(),
-    val abilities: List<String> = listOf(),
-    val items: List<String> = listOf()
-)
+
 
 
 class CharCreatorViewModel : ViewModel() {
@@ -52,6 +43,7 @@ class CharCreatorViewModel : ViewModel() {
         Character(
             id = "1",
             name = "Hero",
+            description = "Descripción del personaje",
             stats = mapOf(
                 "Destreza" to 0,
                 "Fuerza" to 0,

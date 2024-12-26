@@ -1,4 +1,4 @@
-package com.example.kotlinplotgenerator
+package com.example.kotlinplotgenerator.ui.screen
 
 import android.app.Activity
 import androidx.compose.foundation.background
@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -26,11 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -42,10 +38,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.unirfp.jetpackcomposeinstagram.Body
-import com.unirfp.jetpackcomposeinstagram.Footer
-import com.unirfp.jetpackcomposeinstagram.Header
-import com.unirfp.jetpackcomposeinstagram.SignUp
+import com.example.kotlinplotgenerator.viewmodels.CharCreatorViewModel
+
 
 @Composable
 fun CharCreatorScreen(modifier: Modifier = Modifier){
@@ -81,6 +75,13 @@ fun MyForm() {
             .padding(16.dp)
             .fillMaxSize()
     ) {
+        Spacer(modifier = Modifier.height(16.dp))
+        // Aquí podrías agregar otros elementos de UI como el nombre del personaje, etc.
+        Text(text = "Nombre del personaje: ${character.name}")
+        Text(text = "ID del personaje: ${character.description}")
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         // Llamamos a StatRow para cada stat
         StatRow(statName = "Destreza", viewModel = viewModel)
         StatRow(statName = "Fuerza", viewModel = viewModel)
@@ -89,9 +90,7 @@ fun MyForm() {
         StatRow(statName = "Sabiduría", viewModel = viewModel)
         StatRow(statName = "Carisma", viewModel = viewModel)
 
-        // Aquí podrías agregar otros elementos de UI como el nombre del personaje, etc.
-        Text(text = "Nombre del personaje: ${character.name}")
-        Text(text = "ID del personaje: ${character.id}")
+
     }
 }
 
@@ -113,18 +112,15 @@ fun StatRow(
     ) {
         TextDescription(statDescription = statName, modifier = Modifier)
 
-        // Botón de decremento
-        IconButton(icon = Icons.Default.Remove, onClick = {
+        IconButton(icon = Icons.Filled.Remove, onClick = {
             viewModel.decrementStat(statName)
         })
 
-        // Input para mostrar y actualizar el valor del stat
         StatInput(stat = statValue.toString()) { newValue ->
             viewModel.updateStat(statName, newValue.toIntOrNull()?:0)
         }
 
-        // Botón de incremento
-        IconButton(icon = Icons.Default.Add, onClick = {
+        IconButton(icon = Icons.Filled.Add, onClick = {
             viewModel.incrementStat(statName)
         })
     }
@@ -170,8 +166,11 @@ fun IconButton(
     Button(
         onClick = onClick,
         modifier = modifier
-            .size(20.dp)
+            .size(60.dp)
             .clip(RoundedCornerShape(4.dp))
+            .background(color = Color.LightGray)
+            .padding(15.dp)
+
     ) {
         Icon(
             imageVector = icon,
@@ -179,7 +178,7 @@ fun IconButton(
             modifier = Modifier
                 .size(40.dp)
                 .padding(8.dp),
-            tint = Color.Red
+            tint = Color.Black
         )
     }
 }
@@ -199,7 +198,9 @@ fun TextDescription(statDescription : String, modifier: Modifier) {
 @Composable
 fun TextInput(textInput: String, onTextChanged: (String) -> Unit) {
     TextField(value = textInput, onValueChange = { onTextChanged(it)},
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .width(70.dp)
+            .padding(16.dp),
         placeholder = { Text(text = "0") },
         maxLines = 1,
         singleLine = true,
@@ -233,7 +234,6 @@ fun Footer(modifier: Modifier) {
                 .fillMaxWidth()
         )
         Spacer(modifier = Modifier.size(16.dp))
-        SignUp()
         Spacer(modifier = Modifier.size(16.dp))
     }
 
