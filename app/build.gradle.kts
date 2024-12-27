@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("kotlin-kapt")
 }
 
 android {
@@ -62,7 +63,10 @@ dependencies {
     implementation(platform("androidx.compose:compose-bom:2023.1.0"))
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
 
-
+    // Base de datos local Room
+    implementation( "androidx.room:room-runtime:2.5.2")
+    implementation ("androidx.room:room-ktx:2.5.2") // Extensiones para Kotlin (coroutines, etc.)
+    kapt("androidx.room:room-compiler:2.5.2")
 
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
