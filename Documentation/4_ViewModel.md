@@ -1,6 +1,17 @@
-# Separación de lógica
+# Persistencia de datos
 
-Para separar la lógica correctamente vamos a seguir la siguiente estructura de carpetas:
+A la hora de trabajar con nuestra aplicación, hay muchas estructuras de datos que querremos que persistan a lo largo del ciclo de vida. Para ello, hay distintas opciones:
+
+- ViewModel: que es el que vamos a ver ahora.
+- Patrón singleton: una clase con instancia única para toda la aplicación, cuando se necesita que los datos persistan entre distintos componentes de la aplicación y no quieres crear múltiples instancias.
+- Repository Pattern: almacenamiento local y remoto de datos (uso de bases de datos, APIS, almacenamiento local o almacenamiento ligero de distinto tipo).
+
+Por lo general, el sistema de persistencia de datos va a ser una combinación de los anteriores, dependiendo de las necesidades existentes en la aplicación (por ejemplo, si hay acceso o no hay acceso a internet, podría hacerse una llamada a la API o tirar del almacenamiento local hasta que haya internet).
+
+
+### Separación lógica
+
+Antes de comenzar, vamos a trazar la arquitectura de nuestro progama para que haya una separación. El resultaod debería ser algo parecido a este:
 
 ```bash
 
